@@ -68,8 +68,8 @@
     <tr ng-repeat="taco in tc.tacos track by taco.id">
       <td>{{taco.id}}</td>
       <td class="meat">{{taco.meat}}</td>
-      <td class="rice">{{taco.rice == "1" ? 'yes' : 'no'}}</td>
-      <td class="salsa">{{taco.salsa == "1" ? 'yes' : 'no'}}</td>
+      <td class="rice">{{taco.rice == 't' ? 'yes' : 'no'}}</td>
+      <td class="salsa">{{taco.salsa == 't' ? 'yes' : 'no'}}</td>
       <td>{{taco.notes}}</td>
       <td><button type="button" class="btn btn-danger btn-xs fa fa-times" title="Delete this Taco" ng-click="tc.deleteTaco(taco)"></button></td>
     </tr>
@@ -102,7 +102,7 @@
     }
 
     this.getTacos = function() {
-      return $http.get('https://stormy-coast-97376.herokuapp.com/tacos').then(function(result) {
+      return $http.get('http://localhost:3000//tacos').then(function(result) {
         return _.map(result.data, fromJSON);
       });
     };
@@ -110,7 +110,7 @@
     this.createTaco = function(json) {
       return $http({
         method: 'POST',
-        url: 'https://stormy-coast-97376.herokuapp.com/tacos',
+        url: 'http://localhost:3000//tacos',
         data: json
       }).then(function(result) {
             return fromJSON(result.data);
@@ -120,7 +120,7 @@
     this.deleteTaco = function(id) {
       return $http({
         method: 'DELETE',
-        url: 'https://stormy-coast-97376.herokuapp.com/tacos/' + id
+        url: 'http://localhost:3000//tacos/' + id
       });
     };
   });
